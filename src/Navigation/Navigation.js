@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Outlet, useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 import Loading from "../Error/Loading";
 import { logout } from "../store/userSlice";
@@ -26,9 +26,7 @@ function Navigation() {
             </div>
             <NavLink
               style={({ isActive }) => {
-                let activeStyle = isActive
-                  ? { color: "red" }
-                  : {};
+                let activeStyle = isActive ? { color: "red" } : {};
                 return {
                   ...activeStyle,
                 };

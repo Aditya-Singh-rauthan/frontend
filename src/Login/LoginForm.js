@@ -13,7 +13,6 @@ function LoginForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
-    console.log(">>>data", formData);
     e.preventDefault();
     let data = { ...formData, rememberMe };
     dispatch(login(data, navigate));

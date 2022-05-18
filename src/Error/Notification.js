@@ -17,7 +17,7 @@ function Notification() {
             className="notificationContainer"
             style={{
               backgroundColor:
-                status === 200 && status !== "Error"
+                status === 200 || status !== "Error"
                   ? "rgba(85, 243, 53, 0.548)"
                   : "rgba(248, 82, 82, 0.548)",
             }}

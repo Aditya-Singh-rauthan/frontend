@@ -1,19 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router";
 import "./HorizontalNavigation.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getNavigationRoutes } from "../store/navigationSlice";
+import Loading from "../Error/Loading";
 function HorizontalNavigation() {
-  const [showNavigation, setShowNavigation] = useState(true);
-  const dummy = [
-    { to: "notes", text: "Notes" },
-    { to: "pages", text: "Diary" },
-    { to: "todos", text: "ToDos" },
-  ];
+  const [showNavigation] = useState(true);
+  const { navigation, auth: { user: { token } = {} } = {} } = useSelector(
+    (state) => {
+      return { navigation: state.navigation, auth: state.user };
+    }
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getNavigationRoutes(token));
+    // eslint-disable-next-line
+  }, [token]);
+
+  // const dummy = [
+  //   { to: "notes", text: "Notes" },
+  //   { to: "pages", text: "Diary" },
+  //   { to: "todos", text: "ToDos" },
+  // ];
+  let { routes = [] } = navigation || {};
+  let dummy = routes.map(({ name, value }) => {
+    return { to: value, text: name };
+  });
   let inactiveStyle = {
     position: "relative",
     left: -150,
     top: 0,
   };
+  if(!dummy || !dummy.length){
+    return <Loading/>
+  }
   return (
     <div style={{ display: "flex" }}>
       <div

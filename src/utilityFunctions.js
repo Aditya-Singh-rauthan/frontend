@@ -26,8 +26,7 @@ export const checkUser = async (dispatch, navigate, pathname) => {
     try {
       let result = await post({ path: "/api/v1/user/user", body });
       let {
-        data: { message = "OK!!!", user },
-        status,
+        data: { user },
       } = result || {};
       dispatch(add({ ...user, token }));
       navigate(pathname);
@@ -49,3 +48,19 @@ export const checkUser = async (dispatch, navigate, pathname) => {
     dispatch(setLoading(false));
   }
 };
+
+export function checkConnectivity(dispatch, event) {
+  console.log(">>>called");
+  if (!navigator.onLine) {
+    notificationDispatcher(dispatch, {
+      message: "Not Connected To Internet!!!",
+      status: "Error",
+    });
+  }
+  else if (navigator.onLine) {
+    notificationDispatcher(dispatch, {
+      message: "Connection Established",
+      status: "Success",
+    });
+  }
+}
