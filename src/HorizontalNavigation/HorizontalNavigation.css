@@ -1,0 +1,22 @@
+.horizontalNavigation{
+    display:flex;
+    border-right: 1px solid rgba(214, 191, 203, 0.699);
+    flex-direction: column;
+    /* position: relative; */
+    /* left: -100px; */
+    /* top: 0; */
+    height: 85.5vh;
+    /* flex:0.2; */
+    width: 15%;
+    overflow: auto;
+}
+.horizontalNavigation::-webkit-scrollbar {display:none;}
+
+.heading{
+    border-bottom: 1px solid rgba(214, 191, 203, 0.699);
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

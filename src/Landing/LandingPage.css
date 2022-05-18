@@ -1,0 +1,66 @@
+.landingPage {
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    /* border:1px solid red; */
+    height: 100vh;
+    background-image: url('/public/LandingImage2.jpg');
+    background-size: cover;
+}
+
+.landingHeader{
+    /* border:2px solid red; */
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    padding:20px;
+}
+.linkButton {
+    background-color: transparent;
+    padding: 10px;
+    border:1px solid rgb(56, 75, 56);
+    flex:0.5;
+    color:white;
+    border-radius: 10px;
+    cursor:pointer;
+    font-size: 18px;
+    text-decoration: none;
+}
+.linkButton:hover{
+    background-color: white;
+    color: black;
+}
+.landingQuote{
+    text-align: justify;
+    color: rgb(56, 75, 56);
+    display: flex;
+    flex: 0.5;
+    flex-direction: column;
+    font-size: 30px;
+    font-family: Oleo Script Swash Caps, cursive;
+    padding: 10px;
+}
+@media only screen and (max-width: 650px) {
+    .linkButton {
+        background-color: transparent;
+        padding: 8px;
+        border:1px solid rgb(56, 75, 56);
+        flex:0.9;
+        color:white;
+        border-radius: 10px;
+        cursor:pointer;
+        font-size: 15px;
+        text-decoration: none;
+    }
+    .landingQuote{
+        text-align: justify;
+        color: rgb(56, 75, 56);
+        display: flex;
+        flex: 0.8;
+        flex-direction: column;
+        font-size: 30px;
+        font-family: Oleo Script Swash Caps, cursive;
+        padding: 10px;
+        font-weight: 20;
+    }
+  }
