@@ -56,11 +56,15 @@ export function checkConnectivity(dispatch, event) {
       message: "Not Connected To Internet!!!",
       status: "Error",
     });
-  }
-  else if (navigator.onLine) {
+  } else if (navigator.onLine) {
     notificationDispatcher(dispatch, {
       message: "Connection Established",
       status: "Success",
     });
   }
 }
+
+export const fileUrlCreator = (file) => {
+  const url = URL.createObjectURL(file);
+  return url;
+};

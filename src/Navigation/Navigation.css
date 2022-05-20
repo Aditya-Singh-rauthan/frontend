@@ -1,3 +1,16 @@
 .p1{
     cursor: pointer;
 }
+
+
+
+.logoutButtons{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonText {
+    background-color: transparent;
+    border:none;
+}

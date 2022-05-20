@@ -17,6 +17,7 @@ import {
 import Loading from "./Error/Loading";
 import { setLoading } from "./store/userSlice";
 import Profile from "./Profile/Profile";
+import Modal from "./modal/modal";
 function App() {
   let navigate = useNavigate();
   let dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
   }, []);
   return (
     <>
+      {/* <Modal/> */}
       <Notification />
       <Loading />
       <Routes>
