@@ -18,6 +18,7 @@ import Loading from "./Error/Loading";
 import { setLoading } from "./store/userSlice";
 import Profile from "./Profile/Profile";
 import Modal from "./modal/modal";
+import EditProfile from "./Profile/EditProfile";
 function App() {
   let navigate = useNavigate();
   let dispatch = useDispatch();
@@ -104,6 +105,7 @@ function App() {
             <Route path="todos" element={<div>Todos</div>} />
             <Route path="pages" element={<div>Your Diary</div>} />
             <Route path="profile" element={<Profile />} />
+            <Route path="profile/edit" element={<EditProfile />} />
           </Route>
         </Route>
         <Route path="*" element={<div>Invalid Route</div>} />

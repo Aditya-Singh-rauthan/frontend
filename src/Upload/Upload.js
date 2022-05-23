@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { fileUrlCreator } from "../utilityFunctions";
+import { useDispatch, useSelector } from "react-redux";
+import { post } from "../apiMethods";
+import Modal from "../modal/modal";
+import { fileUrlCreator, notificationDispatcher } from "../utilityFunctions";
 
-function Upload() {
+function Upload(props) {
+  const dispatch = useDispatch();
   const [files, setFiles] = useState([]);
+  const { user: { token } = {} } = useSelector((state) => state.user);
   const inputRef = useRef(null);
   const onFileSelect = (e) => {
     setFiles([...files, ...e.target.files]);
@@ -18,17 +23,42 @@ function Upload() {
     files.splice(removeIndex, 1);
     setFiles([...files]);
   };
-
+  const onSubmit = async () => {
+    let formData = new FormData();
+    for (let file of files) {
+      formData.append("files", file);
+    }
+    try {
+      let { data } =
+        (await post({
+          path: "/upload",
+          body: formData,
+          token,
+          upload: true,
+          ...props,
+        })) || {};
+      notificationDispatcher(dispatch, data);
+      setFiles([])
+      props.setValue((value) => {
+        return { ...value, profile_pic: data.result.profile_pic };
+      });
+    } catch (error) {
+      notificationDispatcher(dispatch, error);
+      setFiles([])
+    }
+  };
   return (
     <div>
-      <input
-        type="file"
-        onChange={(e) => onFileSelect(e)}
-        multiple={true}
-        name="file"
-        ref={inputRef}
-        style={{ display: "none" }}
-      />
+      <form>
+        <input
+          type="file"
+          onChange={(e) => onFileSelect(e)}
+          multiple={true}
+          name="file"
+          ref={inputRef}
+          style={{ display: "none" }}
+        />
+      </form>
       <div
         style={{
           display: "flex",
@@ -40,7 +70,7 @@ function Upload() {
           onClick={() => inputRef.current.click()}
           style={{ cursor: "pointer" }}
         >
-          <img src="/Upload.png" width="100" height="100" />
+          <img src="/UploadImage.png" />
         </div>
         {files.map((item, index) => {
           return (
@@ -61,6 +91,11 @@ function Upload() {
           );
         })}
       </div>
+      {files && files.length ? (
+        <button className="greenButton" onClick={onSubmit}>
+          Upload
+        </button>
+      ) : null}
     </div>
   );
 }

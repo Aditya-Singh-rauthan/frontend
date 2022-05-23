@@ -50,7 +50,6 @@ export const checkUser = async (dispatch, navigate, pathname) => {
 };
 
 export function checkConnectivity(dispatch, event) {
-  console.log(">>>called");
   if (!navigator.onLine) {
     notificationDispatcher(dispatch, {
       message: "Not Connected To Internet!!!",
@@ -67,4 +66,26 @@ export function checkConnectivity(dispatch, event) {
 export const fileUrlCreator = (file) => {
   const url = URL.createObjectURL(file);
   return url;
+};
+
+export const getNestedFields = (obj) => {
+  let fields = {};
+  if (typeof obj === "string" || typeof obj === "number") {
+    return fields;
+  }
+  for (let key of Object.keys(obj)) {
+    if(key.startsWith('_')){
+      continue
+    }
+    if (
+      typeof obj[key] == "string" ||
+      typeof obj[key] == "number" ||
+      Array.isArray(obj[key])
+    ) {
+      fields = { ...fields, [key]: obj[key] };
+    } else {
+      fields = { ...fields, ...getNestedFields(obj[key]) };
+    }
+  }
+  return fields;
 };

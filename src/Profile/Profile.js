@@ -34,13 +34,22 @@ function Profile() {
     getProfile();
   }, []);
 
-  const { user: { name, email } = {} } = profile || {};
+  // if(!profile || !profile._id){
+  //   return <div><p>Loading</p></div>
+  // }
+  const {
+    user: { name, email } = {},
+    profile_pic: { url } = {},
+    about = "",
+    _id:profileId,
+    ...rest
+  } = profile || {};
   return (
     <div
       style={{
         flex: 1,
         display: "flex",
-        maxHeight: "86.2vh",
+        maxHeight: "87.2vh",
         overflow: "auto",
       }}
     >
@@ -67,28 +76,47 @@ function Profile() {
             title="Edit Profile"
             onClick={() => navigate(pathname + "/edit")}
           >
-            {/* <h4>Edit</h4> */}
             <img src="/EditIcons.png" />
           </button>
         </div>
         <div className="About">
-          <div className="flexColumn" style={{ padding: 20, minWidth: 500 }}>
-            <img src="/ProfileImage.jpg" width="100%" />
+          <div
+            className="flexColumn"
+            style={{
+              padding: 20,
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            <img
+              src={url || "/ProfileImage.jpg"}
+              width="200"
+              height="200"
+              style={{
+                borderRadius: "50%",
+                left: "50%",
+                position: "absolute",
+                top: -100,
+                border: "4px solid brown",
+                transform: "translateX(-50%)",
+              }}
+            />
+            <div
+              className="flexColumn"
+              style={{ position: "absolute", top: 120,padding:20 }}
+            >
+              {Object.keys(rest).map((item, index) => {
+                return (
+                  <div key={index}>
+                    <b><p>{item} : {rest[item]}</p></b>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="flexColumn" style={{}}>
             <h2>About</h2>
-            <p>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English. Many desktop
-              publishing packages and web page editors now use Lorem Ipsum as
-              their default model text, and a search for 'lorem ipsum' will
-              uncover many web sites still in their infancy. Various versions
-              have evolved over the years, sometimes by accident, sometimes on
-              purpose (injected humour and the like).
-            </p>
+            <p>{about}</p>
           </div>
         </div>
       </div>

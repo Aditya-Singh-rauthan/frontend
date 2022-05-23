@@ -7,29 +7,36 @@
 .CoverImage {
     min-height: 250px;
     flex:1;
-    /* width: 100%; */
-    /* height: 50%; */
-    /* border:1px solid rgba(0, 128, 0, 0.493); */
     object-fit: auto;
-    background-image: url('/public/coverImage.jpg');
+    background-image: url('/public/CoverImage.jpg');
     background-size: 100% 100%;
-    /* align-items:; */
     text-align: left;
     padding: 0px 20px;
+    position: relative;
+    border-bottom: 4px solid brown;
+}
+.ProfileImage {
+    min-height: 250px;
+    flex:1;
+    /* object-fit: auto; */
+    background-image: url('/public/User.png');
+    background-size: 100% 100%;
+    text-align: left;
+    /* padding: 0px 20px; */
     position: relative;
 }
 .About{
     flex:1.5;
     display: flex;
 }
-.Profile::-webkit-scrollbar{
+*::-webkit-scrollbar{
     width: 10px;
     height: 10px;
 }
-.Profile::-webkit-scrollbar-track{
+*::-webkit-scrollbar-track{
     background-color: rgb(209, 201, 132);
 }
-.Profile::-webkit-scrollbar-thumb{
+*::-webkit-scrollbar-thumb{
     background-color: rgb(145, 108, 7);
     border-radius: 20px;
 }
@@ -40,4 +47,20 @@
 }
 .title{
     color: brown;
+}
+input {
+    padding:10px;
+    font-size: 15px;
+    border:none;
+    color:gray;
+}
+
+textarea{
+    padding:10px;
+    font-size: 14px;
+    border:none;  
+    min-width: 200px;
+    min-height: 100px;
+    color: gray;
+    font-weight: 0;
 }

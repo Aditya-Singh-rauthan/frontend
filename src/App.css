@@ -24,3 +24,12 @@
     border-radius: 20px;
     background-image: linear-gradient(rgba(80, 199, 25, 0.904),rgba(122, 194, 102, 0.904));
 }
+.yellowButton {
+    padding:10px;
+    flex:1;
+    margin-right:5px;
+    border:none;
+    color:white;
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(224, 194, 18, 0.904),rgba(188, 194, 102, 0.904));
+}

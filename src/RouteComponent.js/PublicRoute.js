@@ -10,7 +10,6 @@ function PublicRoute(props) {
     return props.children;
   }
   
-  console.log('>>>props',location)
   let {pathname} = location || {}
   return <Navigate to="/home" />;
 }
